@@ -1,10 +1,376 @@
+/* ========== Global Styles ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    padding: 20px;
+    min-height: 100vh;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+}
+
+/* ========== Header ========== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+body.dark-mode .header {
+    background: #2a2a3e;
+}
+
+h1 {
+    font-size: 2.5em;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark-mode h1 {
+    background: linear-gradient(135deg, #a8b2ff, #c89eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dark-mode-toggle {
+    background: #667eea;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+p {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* ========== Button Grid ========== */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+button {
+    background: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+body.dark-mode button {
+    background: #2a2a3e;
+    color: #e0e0e0;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ========== Secret Section ========== */
+.secret-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .secret-section {
+    background: #2a2a3e;
+}
+
+.secret-section h3 {
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+body.dark-mode .secret-section h3 {
+    color: #a8b2ff;
+}
+
+.secret-section input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    font-size: 1em;
+    margin-right: 10px;
+    width: calc(100% - 120px);
+}
+
+body.dark-mode .secret-section input {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #a8b2ff;
+}
+
+.secret-section button {
+    width: 100px;
+}
+
+/* ========== Output Section ========== */
+.output-section {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .output-section {
+    background: #2a2a3e;
+}
+
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.output-header h2 {
+    color: #667eea;
+}
+
+body.dark-mode .output-header h2 {
+    color: #a8b2ff;
+}
+
+.share-btn {
+    background: #667eea !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    font-size: 0.9em !important;
+}
+
+#out {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    min-height: 100px;
+}
+
+body.dark-mode #out {
+    background: #1a1a2e;
+    color: #e0e0e0;
+}
+
+/* ========== Admin Section ========== */
+.admin-section {
+    margin-top: 30px;
+}
+
+.admin-toggle {
+    background: #764ba2 !important;
+    color: white !important;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.admin-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .admin-panel {
+    background: #2a2a3e;
+}
+
+.admin-panel.hidden {
+    display: none;
+}
+
+.admin-panel h2 {
+    color: #764ba2;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+body.dark-mode .admin-panel h2 {
+    color: #c89eff;
+}
+
+.admin-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+body.dark-mode .admin-card {
+    background: #1a1a2e;
+}
+
+.admin-card h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .admin-card h3 {
+    color: #a8b2ff;
+}
+
+.admin-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.admin-controls input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-size: 0.95em;
+    min-width: 200px;
+}
+
+body.dark-mode .admin-controls input {
+    background: #16213e;
+    color: #e0e0e0;
+    border-color: #a8b2ff;
+}
+
+.btn-add {
+    background: #28a745 !important;
+    color: white !important;
+}
+
+.btn-load {
+    background: #667eea !important;
+    color: white !important;
+}
+
+/* ========== Item List ========== */
+.item-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-item {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .list-item {
+    background: #16213e;
+}
+
+.item-text {
+    flex: 1;
+    margin-right: 10px;
+    word-break: break-word;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit {
+    background: #ffc107 !important;
+    color: #333 !important;
+    padding: 6px 12px !important;
+    font-size: 0.85em !important;
+}
+
+.btn-delete {
+    background: #dc3545 !important;
+    color: white !important;
+    padding: 6px 12px !important;
+    font-size: 0.85em !important;
+}
+
+/* ========== Animations ========== */
 .smash-effect {
     animation: shake 0.5s;
     background-color: #ff4444 !important;
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .button-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-controls {
+        flex-direction: column;
+    }
+
+    .admin-controls input {
+        width: 100%;
+    }
 }
