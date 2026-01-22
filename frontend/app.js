@@ -35,7 +35,6 @@ document.querySelectorAll(".btnMood").forEach(btn => {
 
 document.getElementById("btnSmash").addEventListener("click", async () => {
     try {
-        // Add visual feedback
         const btn = document.getElementById("btnSmash");
         btn.disabled = true;
         btn.textContent = "SMASHING...";
@@ -48,7 +47,6 @@ document.getElementById("btnSmash").addEventListener("click", async () => {
         
         const data = await res.json();
         
-        // Add more dramatic feedback
         show({ 
             message: "💥 SMASH ACTIVATED! 💥", 
             timestamp: new Date().toLocaleTimeString(),
@@ -56,14 +54,12 @@ document.getElementById("btnSmash").addEventListener("click", async () => {
             ...data 
         });
 
-        // Optional: Add animation or sound effect
         btn.classList.add("smash-effect");
         setTimeout(() => btn.classList.remove("smash-effect"), 500);
 
     } catch (error) {
         show({ error: "Smash failed!", details: error.message });
     } finally {
-        // Reset button
         const btn = document.getElementById("btnSmash");
         btn.disabled = false;
         btn.textContent = "SMASH";
