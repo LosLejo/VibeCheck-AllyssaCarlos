@@ -5,24 +5,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VibeCheck 411L</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>VibeCheck 411L</h1>
+    <div class="header">
+        <h1>VibeCheck 411L</h1>
+        <button id="btnDarkMode" class="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+    </div>
+
     <p>Click buttons. This page will fetch data from your Node.js API.</p>
 
-    <div>
+    <div class="button-grid">
         <button id="btnFortune">🔮 Fortune</button>
         <button id="btnJoke">😂 Joke</button>
         <button data-mood="happy" class="btnMood">😄 Happy</button>
         <button data-mood="tired" class="btnMood">🥱 Tired</button>
         <button data-mood="stressed" class="btnMood">😵‍💫 Stressed</button>
         <button id="btnSmash">💥 SMASH!</button>
-        <button id="btnSecret">🕵️ Secret</button>
     </div>
 
-    <h2>Output</h2>
-    <pre id="out">Ready...</pre>
+    <div class="secret-section">
+        <h3>🕵️ Secret Code</h3>
+        <input type="text" id="secretInput" placeholder="Enter secret code..." />
+        <button id="btnSecret">Unlock</button>
+    </div>
+
+    <div class="output-section">
+        <div class="output-header">
+            <h2>Output</h2>
+            <button id="btnShare" class="share-btn" title="Share/Copy">📋 Share</button>
+        </div>
+        <pre id="out">Ready...</pre>
+    </div>
 
     <script src="app.js"></script>
 </body>
