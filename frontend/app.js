@@ -170,15 +170,6 @@ if (localStorage.getItem("darkMode") === "true") {
     document.getElementById("btnDarkMode").textContent = "☀️";
 }
 
-// ========== Admin Panel Toggle ==========
-
-document.getElementById("btnToggleAdmin").addEventListener("click", () => {
-    const panel = document.getElementById("adminPanel");
-    panel.classList.toggle("hidden");
-    const btn = document.getElementById("btnToggleAdmin");
-    btn.textContent = panel.classList.contains("hidden") ? "⚙️ Admin Panel" : "✖ Close Admin";
-});
-
 // ========== Fortune CRUD ==========
 
 document.getElementById("btnAddFortune").addEventListener("click", async () => {
