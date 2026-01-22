@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const asyncHandler = require("../middleware/asyncHandler");
 
 // Data pool with IDs for CRUD operations
 let jokes = [
@@ -11,19 +12,27 @@ let jokes = [
 let nextId = 4; // Auto-increment ID
 
 // GET /api/joke -> returns one random joke
-router.get("/", (req, res) => {
+router.get("/", asyncHandler(async (req, res) => {
+    if (jokes.length === 0) {
+        return res.status(404).json({ error: "No jokes available" });
+    }
     const pick = jokes[Math.floor(Math.random() * jokes.length)];
     res.json({ joke: pick.text });
-});
+}));
 
 // GET /api/joke/all -> returns all jokes
-router.get("/all", (req, res) => {
+router.get("/all", asyncHandler(async (req, res) => {
     res.json({ jokes, count: jokes.length });
-});
+}));
 
 // GET /api/joke/:id -> returns specific joke by ID
-router.get("/:id", (req, res) => {
+router.get("/:id", asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid ID format" });
+    }
+
     const joke = jokes.find(j => j.id === id);
 
     if (!joke) {
@@ -31,10 +40,10 @@ router.get("/:id", (req, res) => {
     }
 
     res.json({ joke });
-});
+}));
 
 // POST /api/joke -> add new joke
-router.post("/", (req, res) => {
+router.post("/", asyncHandler(async (req, res) => {
     const { text } = req.body;
 
     if (!text || text.trim() === "") {
@@ -48,12 +57,16 @@ router.post("/", (req, res) => {
 
     jokes.push(newJoke);
     res.status(201).json({ message: "Joke added", joke: newJoke });
-});
+}));
 
 // PUT /api/joke/:id -> update existing joke
-router.put("/:id", (req, res) => {
+router.put("/:id", asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
     const { text } = req.body;
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid ID format" });
+    }
 
     if (!text || text.trim() === "") {
         return res.status(400).json({ error: "Joke text is required" });
@@ -67,11 +80,16 @@ router.put("/:id", (req, res) => {
 
     joke.text = text.trim();
     res.json({ message: "Joke updated", joke });
-});
+}));
 
 // DELETE /api/joke/:id -> delete joke
-router.delete("/:id", (req, res) => {
+router.delete("/:id", asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid ID format" });
+    }
+
     const index = jokes.findIndex(j => j.id === id);
 
     if (index === -1) {
@@ -80,6 +98,6 @@ router.delete("/:id", (req, res) => {
 
     const deleted = jokes.splice(index, 1)[0];
     res.json({ message: "Joke deleted", joke: deleted });
-});
+}));
 
 module.exports = router;

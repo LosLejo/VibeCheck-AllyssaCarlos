@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const asyncHandler = require("../middleware/asyncHandler");
 
 // GET /api/secret?code=411L -> hidden message if code is correct
 router.get("/", (req, res) => {

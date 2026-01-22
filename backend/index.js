@@ -26,6 +26,9 @@ const vibeRoutes = require("./routes/vibe");
 const smashRoutes = require("./routes/smash");
 const secretRoutes = require("./routes/secret");
 
+// Import error handling middleware
+const { notFoundHandler, errorHandler } = require("./middleware/errorHandler");
+
 // Register routes
 app.use("/api/fortune", fortuneRoutes);
 app.use("/api/joke", jokesRoutes);
@@ -33,6 +36,10 @@ app.use("/api/vibe", vibeRoutes);
 app.use("/api/smash", smashRoutes);
 app.use("/api/smashes", smashRoutes);
 app.use("/api/secret", secretRoutes);
+
+// Error handling middleware (MUST be registered AFTER all routes)
+app.use(notFoundHandler);  // Catches 404 errors
+app.use(errorHandler);     // Catches all other errors
 
 // Start server
 app.listen(PORT, () => {

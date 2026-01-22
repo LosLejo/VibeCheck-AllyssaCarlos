@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const asyncHandler = require("../middleware/asyncHandler");
 
 // Smash counter (stored in memory for now)
 let smashes = 0;
