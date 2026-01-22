@@ -34,9 +34,40 @@ document.querySelectorAll(".btnMood").forEach(btn => {
 });
 
 document.getElementById("btnSmash").addEventListener("click", async () => {
-    const res = await fetch(`${API_BASE}/api/smash`, { method: "POST" });
-    const data = await res.json();
-    show({ message: "SMASH registered 💥", ...data });
+    try {
+        // Add visual feedback
+        const btn = document.getElementById("btnSmash");
+        btn.disabled = true;
+        btn.textContent = "SMASHING...";
+
+        const res = await fetch(`${API_BASE}/api/smash`, { method: "POST" });
+        
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
+        const data = await res.json();
+        
+        // Add more dramatic feedback
+        show({ 
+            message: "💥 SMASH ACTIVATED! 💥", 
+            timestamp: new Date().toLocaleTimeString(),
+            smashCount: data.count || 1,
+            ...data 
+        });
+
+        // Optional: Add animation or sound effect
+        btn.classList.add("smash-effect");
+        setTimeout(() => btn.classList.remove("smash-effect"), 500);
+
+    } catch (error) {
+        show({ error: "Smash failed!", details: error.message });
+    } finally {
+        // Reset button
+        const btn = document.getElementById("btnSmash");
+        btn.disabled = false;
+        btn.textContent = "SMASH";
+    }
 });
 
 document.getElementById("btnSecret").addEventListener("click", async () => {
